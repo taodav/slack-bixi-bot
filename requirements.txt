@@ -1,12 +1,6 @@
-PyYAML==3.10
 Pygments==1.6
-ansible==2.3.0.0
 argparse==1.2.1
-backports.ssl-match-hostname==3.5.0.1
 httpie==0.8.0
-pyserial==2.6
-python-apt===0.9.3.5ubuntu2
-python-debian===0.1.21-nmu2ubuntu2
 requests==2.2.1
 six==1.10.0
 slackclient==1.0.5
