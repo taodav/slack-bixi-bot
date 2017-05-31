@@ -7,7 +7,6 @@ Pygments==1.6
 ansible==2.3.0.0
 argparse==1.2.1
 backports.ssl-match-hostname==3.5.0.1
-chardet==2.0.1
 cloud-init==0.7.5
 colorama==0.2.5
 configobj==4.7.2
