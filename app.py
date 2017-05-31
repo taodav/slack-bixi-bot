@@ -54,26 +54,3 @@ if sc.rtm_connect():
 else:
 	print "Connection failed"
 
-'''
-channel = sc.api_call(
-	"im.open",
-	user="U5GSVCK9S"
-)
-channel_id = channel["channel"]["id"]
-
-res = sc.api_call(
-	"chat.postMessage",
-	channel=channel_id,
-	text="suhh dude"
-)
-users = sc.api_call(
-	"users.list",
-)
-
-def find_user(member, username):
-	if member["name"] == username:
-		return True
-	return False
-
-matches = [member for member in users["members"] if find_user(member, "taodav")]
-'''
