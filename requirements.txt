@@ -4,7 +4,6 @@ MarkupSafe==0.18
 Pillow==4.0.0
 PyYAML==3.10
 Pygments==1.6
-Twisted-Core==13.2.0
 Twisted-Names==13.2.0
 Twisted-Web==13.2.0
 ansible==2.3.0.0
