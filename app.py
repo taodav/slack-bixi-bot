@@ -8,6 +8,8 @@ import pprint
 import time
 import requests
 import apiai
+import json
+import codecs
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -23,11 +25,11 @@ ai = apiai.ApiAI(APIAI_ACCESS_TOKEN)
 sc = SlackClient(SLACK_TOKEN)
 
 def apiai_query(query):
-	print("I'M IN APIAI_QUERY")
 	req = ai.text_request()
 	req.query = query
 	res = req.getresponse()
-	print(res.read())
+	res = json.loads(res.read().decode('utf-8').replace("'", '"'))
+	pp.pprint(res)
 
 def bixi_api_call():
 	r = requests.get('https://secure.bixi.com/data/stations.json')
@@ -43,7 +45,8 @@ def parse_slack_output(slack_rtm_output):
 		#pp.pprint(slack_rtm_output)
 		for output in slack_rtm_output:
 			pp.pprint(output)
-			if output and 'text' in output and output['type'] == 'message' and output['user'] != BOT_ID and 'bixi' in output['text']:
+			if output and 'text' in output and output['type'] == 'message' and output['user'] != BOT_ID:
+			#and 'bixi' in output['text']
 				return output['text'], output['channel']
 	return (None, None)
 
