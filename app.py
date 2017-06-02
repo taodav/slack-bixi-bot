@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import pprint
 import time
 import requests
+import apiai
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -15,9 +16,18 @@ load_dotenv(dotenv_path)
 
 SLACK_TOKEN = os.environ.get("SLACK_BOT_TOKEN")
 BOT_ID = os.environ.get("SLACK_BOT_ID")
+APIAI_ACCESS_TOKEN = os.environ.get("APIAI_ACCESS_TOKEN")
 BIXI_STATION_ID = 542
 
+ai = apiai.ApiAI(APIAI_ACCESS_TOKEN)
 sc = SlackClient(SLACK_TOKEN)
+
+def apiai_query(query):
+	print("I'M IN APIAI_QUERY")
+	req = ai.text_request()
+	req.query = query
+	res = req.getresponse()
+	print(res.read())
 
 def bixi_api_call():
 	r = requests.get('https://secure.bixi.com/data/stations.json')
@@ -38,7 +48,8 @@ def parse_slack_output(slack_rtm_output):
 	return (None, None)
 
 def handle_command(command, channel):
-	station_info = bixi_api_call();
+	station_info = bixi_api_call()
+	apiai_query(command)
 	text = "Error: Could not find station!"
 	if station_info:
 		pp.pprint(station_info)
