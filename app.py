@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 
 from slackclient import SlackClient
+from os.path import join, dirname
 import os
+from dotenv import load_dotenv
 import pprint
 import time
 import requests
 
 pp = pprint.PrettyPrinter(indent=4)
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 SLACK_TOKEN = os.environ.get("SLACK_BOT_TOKEN")
 BOT_ID = os.environ.get("SLACK_BOT_ID")
@@ -52,5 +57,5 @@ if sc.rtm_connect():
 			handle_command(command, channel)
 		time.sleep(1)
 else:
-	print "Connection failed"
+	print("Connection failed")
 
