@@ -30,6 +30,14 @@ def apiai_query(query):
 	res = req.getresponse()
 	res = json.loads(res.read().decode('utf-8').replace("'", '"'))
 	pp.pprint(res)
+	# Parse api result
+	result = res["result"]
+	parameters = result["parameters"]
+	if 'Bixi' in parameters and parameters['Bixi']:
+		# If Bixi exists
+		pp.pprint(parameters)
+	if 'street-address' in parameters and parameters['street-address']:
+		print("This is the street address given: %s"%(parameters['street-address']))
 
 def bixi_api_call():
 	r = requests.get('https://secure.bixi.com/data/stations.json')
