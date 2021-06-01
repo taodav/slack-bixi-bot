@@ -5,7 +5,7 @@ requests==2.2.1
 six==1.10.0
 slackclient==1.0.5
 ssh-import-id==3.21
-urllib3==1.7.1
+urllib3==1.26.5
 websocket-client==0.40.0
 wheel==0.29.0
 python-dotenv==0.6.4
